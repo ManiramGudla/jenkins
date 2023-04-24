@@ -10,7 +10,7 @@ pipeline{
     
       stage('git clone'){
         steps{
-         sh 'ssh -o StrictHostKeyChecking=no ${host}@${ip} "cd /home/ubuntu && mkdir test"'
+         sh 'ls'
             }
       }
     
