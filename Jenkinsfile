@@ -2,10 +2,9 @@ pipeline{
   agent any
   env{
      
-    commit_id={params.commit_id}
     branch={params.branch}
     host='ubuntu'
-    ip={params._hostIp}
+    ip={params.hostIp}
     stages{
     
       stage('git clone'){
