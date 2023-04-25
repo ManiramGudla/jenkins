@@ -12,7 +12,7 @@ pipeline{
       stage('git clone'){
         steps{
          sh '''
-         ssh -o StrictHostKeyChecking=no ${host}@${jenkinsIp}'
+         ssh -T StrictHostKeyChecking=no ${host}@${jenkinsIp}'
             cd /home/ubuntu
             mkdir test
          '
