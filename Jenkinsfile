@@ -40,6 +40,18 @@ pipeline{
             }
       }
       
+      stage('docker compose'){
+        steps{
+         sh '''
+           ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
+           cd /home/ubuntu;
+           cd testVersion/'"${version}"'/Keyist-Ecommerce;
+           sudo docker-compose up -d
+           '
+     '''
+            }
+      }
+      
     
     }
 
