@@ -5,6 +5,7 @@ pipeline{
     branch="${params.branch}"
     host='ubuntu'
     ip="${params.hostIp}"
+    commitId="${params.commitId}"
     jenkinsIp='3.110.116.50'
   }
     stages{
@@ -14,8 +15,10 @@ pipeline{
          sh '''
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
-           cd test;
-           mkdir demo
+           cd testVersion;
+           mkdir '"${commitId}"';
+           cd '"${commitId}"';
+           git clone -b '"${branch}"' https://github.com/ManiramGudla/Keyist-Ecommerce.git
            '
      '''
             }
