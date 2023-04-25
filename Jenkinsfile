@@ -23,6 +23,18 @@ pipeline{
      '''
             }
       }
+      
+      stage('Ansible playbook'){
+        steps{
+         sh '''
+           ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
+           cd /home/ubuntu;
+           cd testVersion/'"${version}"'/Keyist-Ecommerce
+           ansible-playbook ansibleReplacingIp
+           '
+     '''
+            }
+      }
     
     }
 
