@@ -32,6 +32,8 @@ pipeline{
            cd testVersion/'"${version}"'/Keyist-Ecommerce;
            ansible-playbook ansibleReplacingIp;
            sleep 3;
+           '"${version}"';
+           sleep 3;
            '"${jenkinsIp}"'
            '
      '''
