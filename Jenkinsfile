@@ -10,7 +10,28 @@ pipeline{
   }
     stages{
     
-     
+      stage('git clone'){
+        steps{
+         sh '''
+           ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
+           cd /home/ubuntu;
+           cd testVersion;
+           git clone -b '"${branch}"' https://github.com/ManiramGudla/Keyist-Ecommerce.git
+           '
+     '''
+            }
+      }
+      
+      stage('Ansible playbook'){
+        steps{
+         sh '''
+           ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
+           cd /home/ubuntu/testVersion/Keyist-Ecommerce;
+           ansible-playbook ansibleReplacingIp.yml  -e ip='"{ip}"'
+           '
+     '''
+            }
+      }
       
       stage('docker compose'){
         steps{
@@ -18,7 +39,7 @@ pipeline{
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
            cd testVersion/Keyist-Ecommerce;
-           sudo su | docker-compose up -d ;
+           docker-compose up -d ;
            '
      '''
             }
