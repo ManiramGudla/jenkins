@@ -16,8 +16,6 @@ pipeline{
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
            cd testVersion;
-           mkdir '"${version}"';
-           cd '"${version}"';
            git clone -b '"${branch}"' https://github.com/ManiramGudla/Keyist-Ecommerce.git
            '
      '''
