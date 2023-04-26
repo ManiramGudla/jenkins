@@ -30,11 +30,7 @@ pipeline{
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
            cd testVersion/'"${version}"'/Keyist-Ecommerce;
-           ansible-playbook ansibleReplacingIp;
-           sleep 3;
-           '"${version}"';
-           sleep 3;
-           '"${jenkinsIp}"'
+           ansible-playbook ansibleReplacingIp.yml -e version='"${version}"' -e ip='"{ip}"'
            '
      '''
             }
@@ -46,7 +42,8 @@ pipeline{
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
            cd testVersion/'"${version}"'/Keyist-Ecommerce;
-           sudo docker-compose up -d
+           sudo su ;
+           docker-compose up -d
            '
      '''
             }
