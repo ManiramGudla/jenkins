@@ -28,9 +28,8 @@ pipeline{
         steps{
          sh '''
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
-           cd /home/ubuntu;
-           cd testVersion/'"${version}"'/Keyist-Ecommerce;
-           ansible-playbook ansibleReplacingIp.yml -e version='"${version}"' -e ip='"{ip}"'
+           cd /home/ubuntu/testVersion/Keyist-Ecommerce;
+           ansible-playbook ansibleReplacingIp.yml  -e ip='"{ip}"'
            '
      '''
             }
@@ -41,7 +40,7 @@ pipeline{
          sh '''
            ssh -o StrictHostKeyChecking=no -p 65520 ${host}@${ip} '
            cd /home/ubuntu;
-           cd testVersion/'"${version}"'/Keyist-Ecommerce;
+           cd testVersion/Keyist-Ecommerce;
            sudo su ;
            docker-compose up -d
            '
